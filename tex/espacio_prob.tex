@@ -1,0 +1,178 @@
+\chapter{Espacio de probabilidad}
+
+\section{Probabilidad condicionada}
+
+\begin{definition}[Probabilidad condicionada]
+  Sea $(\Sigma, \alg, P)$ un espacio de probabilidades y $B \in \alg$ tal que $\prob{B} > 0$. Definimos la probabilidad de $A \in \alg$ condicionada por $B$ como
+  \[
+    \prob{A \mid B} = \frac{\prob{A \cap B}}{\prob{B}}.
+  \]
+\end{definition}
+
+\begin{proposition}
+  La probabilidad condicionada verifica los tres axiomas de Kolmogorov.
+\end{proposition}
+
+\begin{proof}
+  Sea $A \in \alg$. Veamos que se cumplen los tres axiomas:
+  \begin{enumerate}
+    \item Trivialmente, puesto que $\prob{A \cap B}$ y $\prob{B}$ son no negativos, $\prob{A \mid B}$ es no negativo.
+    \item Para ver que $\prob{\Omega \mid B}$ es 1, basta observar que
+    \[
+      \prob{\Omega \mid B} = \frac{\prob{\Omega \cap B}}{\prob{B}}
+      = \frac{\prob{B}}{\prob{B}} = 1.
+    \]
+    \item Por último, veamos que se cumple la $\sigma$-aditividad. Sean $\set{A_n}_{n \ge 1} \subseteq \alg$ disjuntos dos a dos. Entonces,
+    \[
+      \begin{split}
+        \prob{\bigcup_{n \ge 1} A_n \mid B} &= \frac{\prob{\left(\bigcup_{n \ge 1} A_n\right) \cap B}}{\prob{B}} \\
+        &= \frac{\prob{\bigcup_{n \ge 1} (A_n \cap B)}}{\prob{B}} \\
+        &= \frac{\sum_{n \ge 1} \prob{A_n \cap B}}{\prob{B}} \\
+        &= \sum_{n \ge 1} \frac{\prob{A_n \cap B}}{\prob{B}}, \\
+      \end{split}
+    \]
+    tal y como queríamos demostrar.
+  \end{enumerate}
+\end{proof}
+
+\section{Ejercicios}
+
+En los ejercicios \ref{ex:dados_6} y \ref{ex:dados_n} exploramos un poco la regla de Laplace con el ejemplo clásico de los dados, dando un paso de generalidad de un ejercicio a otro. Además, hemos querido añadir un ejercicio extra en el que damos un último paso en la generalización del apartado \ref{ex:dados_6:suma} del problema \ref{ex:dados_6}.
+
+\setcounter{problem}{1}
+
+\begin{exercise} \label{ex:dados_6}
+  Lanzamos un dado correcto y anotamos el valor en la cara superior. Elegimos otro dado y repetimos la acción. Se pide:
+  \begin{enumerate}
+    \item ¿Cuál es la probabilidad de que la suma de los dos números sea $5$? \label{ex:dados_6:suma}
+    \item ¿Qué probabilidad hay de que un dado muestre el número $2$ y el otro el $4$?
+    \item ¿Qué probabilidad tenemos de que el segundo dado muestre un número mayor que el primero?
+    \item ¿Qué probabilidad tenemos que el segundo dado muestre un valor menor que el primero?
+  \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+  El espacio muestral a considerar es $\Omega = \set{1, 2, 3, 4, 5, 6} \times \set{1, 2, 3, 4, 5, 6}$. Consideramos la $\sigma$-álgebra de conjuntos $\alg = \partsof{\Omega}$ y la probabilidad $P$ uniforme sobre $\alg$. Notamos que $\abs{\Omega} = 36$. Usaremos la combinatoria para determinar el número de casos favorables en cada apartado y, usando la regla de Laplace, determinaremos la probabilidad de cada suceso.
+
+  \begin{enumerate}
+    \item Denotaremos por $\prob{d_1 + d_2 = 5}$ a la probabilidad de que la suma de los dados sea $5$. Notamos que los casos favorables son el número de soluciones de la ecuación
+    \[
+      d_1 + d_2 = 5
+    \]
+    sujeta a las condiciones $1 \le d_1, d_2 \le 6$, con $d_1, d_2 \in \NN$. Podríamos usar el principio de recuento \guillemot{\textit{bars-and-stars}} y el principio de inclusión-exclusión para determinar esta cantidad, algo que haremos más adelante. No obstante, en este caso, debido a que las cantidades son pequeñas, es fácil ver que las soluciones son
+    \[
+      \set{(1, 4), (2, 3), (3, 2), (4, 1)},
+    \]
+    y, por tanto, que
+    \[
+      \prob{d_1 + d_2 = 5} = \frac{4}{36} = \frac{1}{9}.
+    \]
+    \item Las posibilidades son $(2, 4)$ y $(4, 2)$, por lo que
+    \[
+      \prob{\set{(2, 4), (4, 2)}} = \frac{2}{36} = \frac{1}{18}.
+    \]
+    \item Denotaremos por $\prob{d_2 > d_1}$ a la probabilidad de que el segundo dado muestre un número mayor que el primero. Para cada posible valor de $d_1$, hay $d_1 - 1$ posibles valores de $d_2$ que cumplen la condición. Por tanto, el número de casos favorables es
+    \[
+      \sum_{d_1 = 1}^6 (d_1 - 1) = \sum_{d_1 = 0}^5 d_1 = \frac{5 \cdot 6}{2} = 15.
+    \]
+    Así,
+    \[
+      \prob{d_2 > d_1} = \frac{15}{36} = \frac{5}{12}.
+    \]
+    \item Denotaremos por $\prob{d_2 < d_1}$ a la probabilidad de que el segundo dado muestre un número menor que el primero. Podríamos usar el mismo razonamiento que en el apartado anterior, no obstante es también interesante notar que
+    \[
+      \prob{d_2 < d_1} + \prob{d_2 = d_1} = 1 - \prob{d_2 > d_1},
+    \]
+    y que $\prob{d_2 = d_1} = \frac{1}{6}$. Por lo que
+    \[
+      \prob{d_2 < d_1} = \frac{5}{12},
+    \]
+    como cabría esperar, pues ambos casos son totalmente simétricos.
+  \end{enumerate}
+\end{solution}
+
+\begin{exercise} \label{ex:dados_n}
+  Repetimos el poblema \ref{ex:dados_6} pero vamos a suponer que los dados tienen $n$ caras (con $n \ge 4$) y que están bien construidos.
+\end{exercise}
+
+\begin{solution}
+  Ahora el espacio muestral es $\Omega = \set{1, 2, \dots, n} \times \set{1, 2, \dots, n}$. Consideramos la $\sigma$-álgebra de conjuntos $\alg = \partsof{\Omega}$ y la probabilidad $P$ uniforme sobre $\alg$. Notamos que $\abs{\Omega} = n^2$.
+
+  \begin{enumerate}
+    \item Haremos un razonamiento diferente esta vez. Al lanzar el primer dado, es necesario que salga un número menor o igual a $4$, en caso contrario, el siguiente dado añadiría un valor que superaría el $5$. Por tanto, tenemos $4$ casos favorables sobre $n$ posibles. Una vez fijado el primer dado, el valor buscado del segundo viene totalmente determinado, es decir, hay un único caso favorable. Así,
+    \[
+      \prob{d_1 + d_2 = 5} = \frac{4}{n} \cdot \frac{1}{n} = \frac{4}{n^2}.
+    \]
+    \item Este apartado es totalmente análogo al del problem \ref{ex:dados_6}, pues sigue habiendo dos casos favorables sobre $n^2$ posibles. Así,
+    \[
+      \prob{\set{(2, 4), (4, 2)}} = \frac{2}{n^2}.
+    \]
+    \item No es díficil generalizar el razonamiento usado en este apartado del problema \ref{ex:dados_6} para obtener que
+    \[
+      \prob{d_2 > d_1} = \frac{(n - 1) \cdot n}{2 \cdot n^2} = \frac{n - 1}{2n}.
+    \]
+    \item Como comentábamos, este caso es simétrico al anterior, por lo que
+    \[
+      \prob{d_2 < d_1} = \frac{n - 1}{2n}.
+    \]
+  \end{enumerate}
+\end{solution}
+
+Veamos ahora una generalización final del apartado \ref{ex:dados_6:suma} del problema \ref{ex:dados_6}:
+
+\begin{exercise*}
+  Dado un dado de $n$ caras bien construido, queremos hallar la probabilidad que al lanzar $k$ veces el dado, la suma de sus valores sea $t$.
+\end{exercise*}
+
+\begin{solution}
+  Usaremos funciones generatrices para resolver este problema. Podemos considerar que un lanzamiento del dado de $n$ caras viene representado por el la función generatriz
+  \[
+    f(x) = x + x^2 + \dots + x^n = \frac{x(1 - x^n)}{1 - x}.
+  \]
+
+  Puesto que efectuamos $k$ lanzamientos, la función generatriz que representa la suma de los valores obtenidos es $(f(x))^k$. Así, el problema se reduce a hallar el coeficiente de $x^t$ en el desarrollo de $(f(x))^k$. Denotaremos por $[x^a]g(x)$ al coeficiente de $x^a$ en el desarrollo de una función generatriz $g(x)$. Estamos interesados en hallar $[x^t](f(x))^k$.
+
+  Notamos que
+  \[
+    [x^t](f(x))^k = [x^t]\left(\frac{x(1 - x^n)}{1 - x}\right)^k
+    = [x^{t - k}]\left(\frac{1 - x^n}{1 - x}\right)^k.
+  \]
+
+  Además, no es difícil ver que
+  \[
+    [x^a](g(x) + h(x)) = \sum_{i = 0}^{a} [x^i]g(x) \cdot [x^{a - i}]h(x).
+  \]
+  Por lo que,
+  \[
+    [x^{t - k}]\left(\frac{1 - x^n}{1 - x}\right)^k
+    = \sum_{i = 0}^{t - k} [x^{6i}](1 - x^n)^k \cdot [x^{t - k - 6i}]\left(\frac{1}{1 - x}\right)^k.
+  \]
+
+  Usando el teorema del binomio de Newton, sabemos que
+  \[
+    [x^a] (1 - x)^b = (-1)^a \binom{b}{a}.
+  \]
+  Por otra parte, diferenciando la serie geométrica, tenemos que
+  \[
+    [x^a]\frac{1}{(1 - x)^{b + 1}} = \binom{a + b}{a}.
+  \]
+
+  Así, conluimos que el total de casos favorables es
+  \[
+    \sum_{i = 0}^{t - k} (-1)^i \binom{k}{i} \binom{t - 1 - ni}{k - 1}.
+  \]
+\end{solution}
+
+\begin{exercise}
+  Se lanzan al aire dos monedas bien construidas. De las siguientes afirmaciones, ¿cuál, si alguna, te parece la solución correcta a la pregunta \guillemot{¿cuál es la probabilidad de que aparezcan dos caras?}? Justifica tu respuesta.
+
+  \begin{enumerate}
+    \item Puesto que bien aparecen dos caras o bien no aparecen, la probabilidad es de $\frac{1}{2}$.
+    \item El número de caras obtenido puede ser $0$, $1$ o $2$. Por tanto, la probabilidad es de $\frac{1}{3}$.
+    \item Aunque sean monedas iguales, vamos considerar que podemos etiquetarlas como moneda $1$ y $2$. Teniendo en cuenta ese orden, los posibles resultados son $CC$, $C+$, $+C$ y $++$, donde $C$ representa cara y $+$ representa cruz. Por tanto, la probabilidad es de $\frac{1}{4}$.   
+  \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+  La solución correcta es la tercera. La primera afirmación es incorrecta, pues no todas las posibilidades son equiprobables. La segunda afirmación es incorrecta, pues no se tienen en cuenta las posibles permutaciones de los resultados. La tercera afirmación es correcta, pues se tienen en cuenta todas las posibilidades y se considera que son equiprobables.
+\end{solution}

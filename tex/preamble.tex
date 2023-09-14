@@ -1,0 +1,112 @@
+\usepackage{babel}
+
+\usepackage{titling}
+
+\pretitle{\begin{center}\huge\sffamily\bfseries}
+\posttitle{\end{center}}
+
+\preauthor{\begin{center}\Large\sffamily\begin{tabular}[t]{c}}
+\postauthor{\end{tabular}\end{center}}
+
+\predate{\begin{center}\Large\sffamily}
+\postdate{\end{center}}
+
+\usepackage[margin=2.54cm]{geometry}
+\setlength{\marginparwidth}{2cm} % Para el paquete 'todonotes'
+
+\usepackage[svgnames]{xcolor}
+
+\usepackage{titlesec}
+
+\titleformat{\part}[display]{\Huge\bfseries\filcenter}
+  {\color{MidnightBlue}\scalebox{2.5}{\thepart}}
+  {1ex}{}
+
+\titleformat{\chapter}{\huge\sffamily\bfseries}
+  {\color{MidnightBlue}\scalebox{2.5}{\thechapter}}
+  {1ex}{}
+
+\titleformat{\section}{\LARGE\sffamily\bfseries}
+  {\color{MidnightBlue}{\normalfont\sffamily\S}\thesection}
+  {1ex}{}
+
+\titleformat{\subsection}{\Large\sffamily\bfseries}
+  {\color{MidnightBlue}{\normalfont\sffamily\S}\thesubsection}
+  {1ex}{}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+}
+
+\usepackage{graphicx}
+
+\usepackage{enumitem}
+\newlist{dudas}{itemize}{2}
+\setlist[dudas]{label=$\square$}
+\newcommand{\cmark}{\rlap{$\checkmark$}\square}
+
+\usepackage{todonotes}
+\makeatletter
+\renewcommand{\listoftodos}[1][\@todonotes@todolistname]{%
+  \@ifundefined{chapter}{\section{#1}}{\section{#1}} \@starttoc{tdo}
+}
+\newcommand{\duda}[1]{%
+  \todo[color=ForestGreen!50!]{#1}
+}
+\makeatother
+
+\usepackage{mathtools}
+
+\usepackage{amssymb}
+
+\usepackage{amsthm}
+\usepackage{thmtools}
+
+\declaretheoremstyle[
+  headfont=\sffamily\bfseries\color{MediumBlue},
+  headpunct={},
+  postheadspace=1em
+]{thmblue}
+\declaretheoremstyle[
+  headfont=\sffamily\bfseries\color{FireBrick},
+  headpunct={:}
+]{thmred}
+\declaretheoremstyle[
+  headfont=\sffamily\bfseries\color{ForestGreen},
+  headpunct={ ---}
+]{thmgreen}
+\declaretheoremstyle[
+  headfont=\sffamily\bfseries\color{black},
+]{thmblack}
+
+\declaretheorem[name=Teorema, style=thmblue, numberwithin=section]{theorem}
+\declaretheorem[name=Teorema, style=thmblue, numbered=no]{theorem*}
+\declaretheorem[name=Proposición, style=thmblue, sibling=theorem]{proposition}
+\declaretheorem[name=Proposición, style=thmblue, numbered=no]{proposition*}
+\declaretheorem[name=Corolario, style=thmblue, sibling=theorem]{corollary}
+\declaretheorem[name=Corolario, style=thmblue, numbered=no]{corollary*}
+\declaretheorem[name=Lema, style=thmblue, sibling=theorem]{lemma}
+\declaretheorem[name=Lema, style=thmblue, numbered=no]{lemma*}
+\declaretheorem[name=Conjetura, style=thmblue, sibling=theorem]{conjecture}
+\declaretheorem[name=Conjetura, style=thmblue, numbered=no]{conjecture*}
+\declaretheorem[name=Definición, style=thmred, sibling=theorem]{definition}
+\declaretheorem[name=Definición, style=thmred, numbered=no]{definition*}
+\declaretheorem[name=Notación, style=thmred, sibling=theorem]{notation}
+\declaretheorem[name=Notación, style=thmred, numbered=no]{notation*}
+\declaretheorem[name=Ejemplo, style=thmgreen, sibling=theorem]{example}
+\declaretheorem[name=Ejemplo, style=thmgreen, numbered=no]{example*}
+\declaretheorem[name=Nota, style=thmgreen, sibling=theorem]{remark}
+\declaretheorem[name=Nota, style=thmgreen, numbered=no]{remark*}
+\declaretheorem[name=Problema, style=thmblack,]{problem}
+\declaretheorem[name=Problema, style=thmblack, numbered=no]{problem*}
+\declaretheorem[name=Custión, style=thmblack, sibling=problem]{question}
+\declaretheorem[name=Custión, style=thmblack, numbered=no]{question*}
+\declaretheorem[name=Ejercicio, style=thmblack, sibling=problem]{exercise}
+\declaretheorem[name=Ejercicio, style=thmblack, numbered=no]{exercise*}
+
+\newenvironment{solution}{%
+  \begin{proof}[Solución] \color{MidnightBlue!80!black} \renewcommand{\qed}{}%
+}{%
+  \end{proof}%
+}
