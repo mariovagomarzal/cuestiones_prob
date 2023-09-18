@@ -1,6 +1,6 @@
 # Cuestiones y problemas de Probabilidad (2023-2024)
 
-Impartida por el profesor **Francisco José Santonja Gómez**
+Impartida por el profesor _Francisco José Santonja Gómez_
 
 ## Compilación
 
