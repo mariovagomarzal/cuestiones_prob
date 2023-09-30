@@ -105,6 +105,12 @@
 \declaretheorem[name=Ejercicio, style=thmblack, sibling=problem]{exercise}
 \declaretheorem[name=Ejercicio, style=thmblack, numbered=no]{exercise*}
 
+\newenvironment{cproof}{%
+  \begin{proof} \color{MidnightBlue!80!black}%
+}{%
+  \end{proof}%
+}
+
 \newenvironment{solution}{%
   \begin{proof}[Solución] \color{MidnightBlue!80!black} \renewcommand{\qed}{}%
 }{%

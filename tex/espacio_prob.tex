@@ -35,6 +35,24 @@
   \end{enumerate}
 \end{proof}
 
+\begin{exercise*}
+  Sea $(\Omega, P)$ un espacio de probabilidades y $A, B \subseteq \Omega$
+  tales que $\prob{A} > 0$ y $\prob{B} > 0$. Demostrar que si $\prob{A
+  \mid B} > \prob{A}$, entonces $\prob{B \mid A} > \prob{B}$. 
+\end{exercise*}
+
+\begin{cproof}
+  Teniendo en cuenta la conmutatividad de la intersección y que $\prob{A} >
+  0$ y $\prob{B} > 0$, tenemos que
+  \[
+    \begin{split}
+      \prob{A \mid B} = \frac{\prob{A \cap B}}{\prob{B}} > \prob{A} &\iff
+      \prob{A \cap B} > \prob{A} \cdot \prob{B} \\
+      &\iff \frac{\prob{B \cap A}}{\prob{A}} = \prob{B \mid A} > \prob{B}.
+    \end{split}
+  \]
+\end{cproof}
+
 \section{Ejercicios}
 
 En los ejercicios \ref{ex:dados_6} y \ref{ex:dados_n} exploramos un poco la regla de Laplace con el ejemplo clásico de los dados, dando un paso de generalidad de un ejercicio a otro. Además, hemos querido añadir un ejercicio extra en el que damos un último paso en la generalización del apartado \ref{ex:dados_6:suma} del problema \ref{ex:dados_6}.
