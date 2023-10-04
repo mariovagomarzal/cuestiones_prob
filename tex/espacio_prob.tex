@@ -265,3 +265,133 @@ del problema \ref{ex:dados_6}:
   los resultados. La tercera afirmación es correcta, pues se tienen en
   cuenta todas las posibilidades y se considera que son equiprobables.
 \end{solution}
+
+Christian Huygens publicó en 1657 un libro titulado \textit{De ratiociniis
+in ludo aleae} en el que se trataban temas relacionados con la teoría de
+probabilidades. Al final del libro, Huygens propone cinco problemas.
+Estudiaremos, a continuación, el segundo de ellos:
+
+\begin{exercise*}
+  Tres jugadores $A$, $B$ y $C$ juegan a un juego en el que en cada turno
+  se extrae una bola (con remplazo) de una urna que contiene $a$ bolas
+  blancas y $b$ bolas negras. El primer jugador que saca una bola blanca
+  gana. Los jugadores juegan el orden
+  \[
+    A B C \; A B C \; A B C \; \dots
+  \]
+
+  Se pide determinar la probabilidad de victoria de cada jugador.
+\end{exercise*}
+
+\begin{solution}
+  En primer lugar, notamos que la probabilidad de sacar una bola blanca es
+  \[
+    p = \frac{a}{a + b}
+  \]
+  y la probabilidad de sacar una bola negra es $q = 1 - p$. Esto es así
+  considerando una probabilidad uniforme sobre el espacio muestral
+  $\omega = \set{B, N}$, donde $B$ representa sacar una bola blanca y $N$
+  representa sacar una bola negra.
+
+  Por otra parte, podemos considerar una partida de este juego como una
+  sucesión definida sobre el conjunto $\omega = \set{B, N}$. Así, el
+  espacio muestra a considerar sería $\Omega = \omega^\NN$. Puesto que el
+  cardinal de dicho espacio muestral es $\abs{\Omega} = 2^{\aleph_0}$, no
+  es posible considerar una probabilidad uniforme sobre $\Omega$. No
+  obstante, consideraremos una probabilidad uniforme sobre el conjunto
+  $\Omega_n = \omega^n$, que representa las posibles partidas de $n$
+  turnos. Notamos que $\abs{\Omega_n} = 2^n$. Posteriormente, tomando
+  límites sobre $n$, podremos obtener las probabilidades reales. No será
+  difícil ver que dicha probabilidad verifica los axiomas de Kolmogorov.
+
+  Estudiaremos, en el caso de partidas de $n$ turnos, la probabilidad de
+  que la partida acabe en el turno $k$ con $k \le n$. Para ello, en 
+  los $k - 1$ turnos anteriores deben haberse sacado bolas negras.
+  Concluimos, pues, que la probabilidad de que la partida acabe en el
+  turno $k$ es
+  \[
+    \prob{T_n} = q^{n - 1} p.
+  \]
+
+  De esta manera, es fácil ver que la probabilidad de que el jugador $A$
+  gane en el caso de $n$ turnos es la suma de las probabilidades de que
+  gane en los turnos $1, 4, 7, \ldots$, es decir,
+  \[
+    \prob{A_n} = \sum_{k = 0}^{\floor{\frac{n}{3}}} \prob{T_{3k + 1}}.
+  \]
+
+  No es difícil darse que cuenta que con cambiar el índice de inicio de la
+  suma por $1$ o $2$ se obtienen las probabilidades de victoria de los
+  jugadores $B$ y $C$, respectivamente. Así, las probabilidades de victoria
+  de estos dos jugadores son
+  \[
+    \prob{B_n} = \sum_{k = 0}^{\floor{\frac{n}{3}}} \prob{T_{3k + 2}}
+    \quad \text{y} \quad
+    \prob{C_n} = \sum_{k = 0}^{\floor{\frac{n}{3}}} \prob{T_{3k + 3}}.
+  \]
+
+  Si tomamos límite sobre $n$, obtendremos las probabilidades de victoria
+  en forma de una serie geométrica de razón $q^3 < 1$. El cálculo detallado
+  de dichas probabilidades es más bien un ejercicio de cálculo. Así pues,
+  obtenemos que
+  \[
+    \prob{A} = \frac{pq}{1 - q^3}, \quad
+    \prob{B} = \frac{p^2q}{1 - q^3} \quad \text{y} \quad
+    \prob{C} = \frac{p^3q}{1 - q^3}.
+  \]
+\end{solution}
+
+Proponemos ahora una solución alternativa al problema anterior:
+
+\begin{solution}
+  Tomamos $p$ y $q$ como en la solución anterior. El razonamiento ahora es
+  diferente. Supongamos, en cierto modo, que solo se juegan tres turnos. Es
+  fácil ver que la probabilidad de que el jugador $A$ gane es,
+  sencillamente, $p$. Por otra parte, la probabilidad de que el jugador $B$
+  gane depende, en primer lugar, de que el jugador $A$ no haya ganado,
+  suceso con probabilidad $q$ y, en segundo lugar, de que el jugador $B$
+  saque una bola blanca, suceso con probabilidad $p$. Así, la probabilidad
+  de que el jugador $B$ gane es $qp$. Por último, usando un razonamiento
+  análogo, es fácil ver que la probabilidad de que el jugador $C$ gane es
+  $q^2p$.
+
+  No obstante, hemos de generalizar al caso de los infinitos turnos (o
+  hasta que alguien gane). Para ello, notemos que si el jugador $A$ pierde
+  en su primer turno, podríamos replantear un nuevo subproblema en el que
+  ahora el primer jugador es el $B$, después el $C$ y así sucesivamente.
+  Teniendo en cuenta esta posibilidad de que el $A$ sea el nuevo tercer
+  jugador, hemos de modificar la probabilidad de victoria de $A$ de la
+  siguiente manera:
+  \[
+    \prob{A} = p + q\prob{C}.
+  \]
+
+  El primer sumando representa su probabilidad de ganar en el primer turno,
+  mientras que el segundo representa la probabilidad de ganar si $A$
+  perdiera en este turno ($q$) y este pasaría a ser el tercer jugador
+  ($\prob{C}$).
+
+  Es fácil ver que, entonces, la probabilidad de victoria de $B$ es la
+  probabilidad de fracaso de $A$ por la probabilidad de ganar si el fuera
+  el nuevo primer jugador, es decir,
+  \[
+    \prob{B} = q\prob{A}.
+  \]
+
+  Análogamente, la probabilidad de victoria de $C$ es la probabilidad de
+  fracaso de $A$ y $B$ por la probabilidad de ganar si fuera el nuevo
+  primer jugador, es decir,
+  \[
+    \prob{C} = q^2\prob{A}.
+  \]
+
+  Estas tres nuevas ecuaciones dan lugar a un sistema lineal de ecuaciones
+  cuyas incógnitas son, precisamente, $\prob{A}$, $\prob{B}$ y $\prob{C}$.
+  Como $p, q \neq 0$, el sistema tiene solución única. Resolviendo tenemos
+  que
+  \[
+    \prob{A} = \frac{pq}{1 - q^3}, \quad
+    \prob{B} = \frac{p^2q}{1 - q^3} \quad \text{y} \quad
+    \prob{C} = \frac{p^3q}{1 - q^3}.
+  \]
+\end{solution}
