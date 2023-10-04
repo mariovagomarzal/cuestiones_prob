@@ -335,9 +335,9 @@ Estudiaremos, a continuación, el segundo de ellos:
   de dichas probabilidades es más bien un ejercicio de cálculo. Así pues,
   obtenemos que
   \[
-    \prob{A} = \frac{pq}{1 - q^3}, \quad
-    \prob{B} = \frac{p^2q}{1 - q^3} \quad \text{y} \quad
-    \prob{C} = \frac{p^3q}{1 - q^3}.
+    \prob{A} = \frac{p}{1 - q^3}, \quad
+    \prob{B} = \frac{pq}{1 - q^3} \quad \text{y} \quad
+    \prob{C} = \frac{pq^2}{1 - q^3}.
   \]
 \end{solution}
 
@@ -390,8 +390,37 @@ Proponemos ahora una solución alternativa al problema anterior:
   Como $p, q \neq 0$, el sistema tiene solución única. Resolviendo tenemos
   que
   \[
-    \prob{A} = \frac{pq}{1 - q^3}, \quad
-    \prob{B} = \frac{p^2q}{1 - q^3} \quad \text{y} \quad
-    \prob{C} = \frac{p^3q}{1 - q^3}.
+    \prob{A} = \frac{p}{1 - q^3}, \quad
+    \prob{B} = \frac{pq}{1 - q^3} \quad \text{y} \quad
+    \prob{C} = \frac{pq^2}{1 - q^3}.
   \]
 \end{solution}
+
+Por último, hemos realizado una simulación del problema anterior usando
+\textit{Python}. En dicha simulación asumimos que hay $4$ bolas blancas y
+$8$ negras. En la tabla \ref{tab:probabilidades_huygens2} se muestran
+las probabilidades de victoria de los jugadores $A$, $B$ y $C$ en función
+del número de partidas jugadas. Como se puede observar, las probabilidades
+de victoria de los jugadores se estabilizan en ciertos valores que
+coinciden con los obtenidos en las soluciones anteriores.
+
+\begin{table}
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    Partidas jugadas & $A$ & $B$ & $C$ \\
+    \midrule
+    $10$ & $0.700$ & $0.300$ & $0.000$ \\
+    $100$ & $0.530$ & $0.250$ & $0.220$ \\
+    $1000$ & $0.469$ & $0.311$ & $0.220$ \\
+    $10000$ & $0.480$ & $0.314$ & $0.205$ \\
+    $100000$ & $0.473$ & $0.315$ & $0.212$ \\
+    \midrule
+    Esperado & $0.474$ & $0.316$ & $0.211$ \\
+    \bottomrule
+  \end{tabular}
+  \caption{Probabilidades de victoria de los jugadores $A$, $B$ y $C$ en
+  función del número de partidas jugadas con $4$ bolas blancas y $8$
+  negras.}
+  \label{tab:probabilidades_huygens2}
+\end{table}
