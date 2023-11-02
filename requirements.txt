@@ -1,1 +1,2 @@
+invoke>=2.2.0
 pygments>=2.16.1
